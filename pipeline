@@ -21,9 +21,9 @@ pipeline {
         stage('Docker') {
             steps {
                 dir ('docker/toolbox') {
-                    sh "docker build -t sofinan/toolbox:${BUILD_NUMBER} . "    
-                    sh "docker image tag sofinan/toolbox:${BUILD_NUMBER} omkon.ru:1111/repository/sofinan/toolbox:${BUILD_NUMBER}"
-                    sh "docker image push omkon.ru:1111/repository/sofinan/toolbox:${BUILD_NUMBER}"
+                    sh "docker build -t sofinan/toolbox:${BUILD_ID} . "    
+                    sh "docker image tag sofinan/toolbox:${BUILD_ID} omkon.ru:1111/repository/sofinan/toolbox:${BUILD_ID}"
+                    sh "docker image push omkon.ru:1111/repository/sofinan/toolbox:${BUILD_ID}"
                 }
             }
         }
