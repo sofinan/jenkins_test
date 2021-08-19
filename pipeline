@@ -21,7 +21,7 @@ pipeline {
         
         stage('Sonarqube') {
             steps {
-                withSonarQubeEnv('sonarqube') {
+                withSonarQubeEnv('SonarScanner') {
                     sh "./bin/sonar-scanner"
                 }
                 timeout(time: 10, unit: 'MINUTES') {
