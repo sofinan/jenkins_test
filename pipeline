@@ -18,7 +18,19 @@ pipeline {
                 sh "python --version"
             }
         }
-        stage('Docker') {
+        
+        stage('SCM') {
+            checkout scm
+        }
+
+        stage('SonarQube Analysis') {
+            def scannerHome = tool 'SonarScanner';
+            withSonarQubeEnv() {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
+
+        /*stage('Docker') {
             steps {
                 dir ('docker/toolbox') {
                     sh "docker build -t sofinan/toolbox:${BUILD_ID} . "    
@@ -26,6 +38,6 @@ pipeline {
                     sh "docker image push omkon.ru:1111/repository/sofinan/toolbox:${BUILD_ID}"
                 }
             }
-        }
+        }*/
     }
 }
